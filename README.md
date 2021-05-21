@@ -9,7 +9,6 @@ npm install
 
 ---
 **NOTE**
-
 To be able to work properly (log in to app, create task, etc.), you have to run the backend app too.
 <br/>
 Here is github link to the repository : https://github.com/irawanfirmansyah/dataset-platform-api
