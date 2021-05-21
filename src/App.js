@@ -1,12 +1,16 @@
 import { createContext, useContext, useState } from "react";
 import "./App.css";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import Login from "./Login";
 import TaskList from "./TaskList";
 import CreateTask from "./CreateTask";
-import NotFound from "./404";
 import { API_BASE_URL } from "./constants";
-console.log(process.env.NODE_ENV)
+
 const authContext = createContext();
 
 function ProvideAuth({ children }) {
@@ -85,7 +89,7 @@ function App() {
             <CreateTask />
           </Route>
           <Route path="*">
-            <NotFound />
+            <Redirect to="/login" />
           </Route>
         </Switch>
       </Router>
