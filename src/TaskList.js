@@ -7,6 +7,7 @@ import NavBar from "./NavBar";
 export default function TaskList() {
   const auth = useAuth();
   const [data, setData] = useState({ result: [] });
+  const [loading, setLoading] = useState(true);
   const history = useHistory();
 
   useEffect(() => {
@@ -22,7 +23,7 @@ export default function TaskList() {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
-      if (res.status !== 200) {
+      if (res.status === 401) {
         auth.signout(() => {
           history.push("/login");
         });
@@ -30,6 +31,7 @@ export default function TaskList() {
       }
       const json = await res.json();
       setData(json);
+      setLoading(false);
     };
     getTaskByUser();
   }, [auth, history]);
@@ -41,7 +43,9 @@ export default function TaskList() {
         <div className="task-container">
           <h1>Task List</h1>
           <div>
-            {data.result.length > 0 ? (
+            {loading ? (
+              "Loading . . ."
+            ) : data.result.length > 0 ? (
               <TaskListComponent listTask={data.result} />
             ) : (
               "Task is empty"
