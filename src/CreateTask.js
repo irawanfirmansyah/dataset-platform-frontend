@@ -6,11 +6,13 @@ import NavBar from "./NavBar";
 export default function CreateTask() {
   const [taskName, setTaskName] = useState("");
   const [file, setFile] = useState("");
+  const [loading, setloading] = useState(false);
   const history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    setloading(true);
     const formData = new FormData();
     formData.append("name", taskName);
     formData.append("dataset", document.getElementById("dataset").files[0]);
@@ -76,8 +78,8 @@ export default function CreateTask() {
             <br />
             <input
               type="submit"
-              value="Upload"
-              disabled={taskName.length === 0 || file.length === 0}
+              value={loading ? "Loading" : "Upload"}
+              disabled={taskName.length === 0 || file.length === 0 || loading}
             />
           </form>
         </div>

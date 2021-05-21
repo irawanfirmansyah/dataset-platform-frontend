@@ -46,7 +46,10 @@ export default function TaskList() {
             {loading ? (
               "Loading . . ."
             ) : data.result.length > 0 ? (
-              <TaskListComponent listTask={data.result} />
+              <TaskListComponent
+                listTask={data.result}
+                setLoading={setLoading}
+              />
             ) : (
               "Task is empty"
             )}
@@ -57,17 +60,17 @@ export default function TaskList() {
   );
 }
 
-function TaskListComponent({ listTask }) {
+function TaskListComponent({ listTask, setLoading }) {
   return (
     <div className="task-list">
       {listTask.map((item) => (
-        <TaskRow key={item.task_id} {...item} />
+        <TaskRow key={item.task_id} setLoading={setLoading} {...item} />
       ))}
     </div>
   );
 }
 
-function TaskRow(item) {
+function TaskRow({ setLoading, ...item }) {
   const auth = useAuth();
 
   const handleDownload = (item) => {
@@ -89,11 +92,12 @@ function TaskRow(item) {
     }
   };
 
-  const handleInvoke = (taskName) => {
-    if (taskName) {
+  const handleInvoke = (taskId) => {
+    if (taskId) {
+      setLoading(true);
       let reqBody = {
         user_id: auth.user.id,
-        task_name: taskName,
+        task_id: taskId,
       };
       fetch(`${API_BASE_URL}/user_task`, {
         method: "POST",
@@ -114,6 +118,7 @@ function TaskRow(item) {
 
   const handleRevoke = (item) => {
     if (item.user_id && item.task_id) {
+      setLoading(true);
       let reqBody = {
         user_id: item.user_id,
         task_id: item.task_id,
@@ -137,6 +142,7 @@ function TaskRow(item) {
 
   const handleDelete = (taskId) => {
     if (taskId) {
+      setLoading(true);
       fetch(`${API_BASE_URL}/task/${taskId}`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
@@ -172,7 +178,7 @@ function TaskRow(item) {
         onClick={
           canDownloadOrRevoke
             ? () => handleRevoke(item)
-            : () => handleInvoke(item.name)
+            : () => handleInvoke(item.task_id)
         }
       >
         <i className="fas fa-hand-pointer"></i>
