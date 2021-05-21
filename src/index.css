@@ -1,13 +1,158 @@
-body {
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  font-family: "Open Sans", sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+a {
+  text-decoration: none;
+  text-decoration-color: black;
+}
+
+#root {
+  background: #1c92d2; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #1c92d2,
+    #f2fcfe
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #1c92d2,
+    #f2fcfe
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  width: 100%;
+  height: 100vh;
+}
+
+nav {
+  background-color: #fff;
+  width: 100%;
+  height: 42px;
+}
+
+nav > ul {
+  width: 80%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+
+nav > ul li:first-child {
+  margin-left: auto;
+}
+
+nav > ul li:nth-child(2) {
+  margin-left: 2em;
+  margin-right: auto;
+}
+
+nav > ul li:last-child {
+  margin-left: auto;
+  margin-right: 20px;
+}
+nav > ul li {
+  cursor: pointer;
+}
+
+.form-bg {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-container {
+  background: white;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 2em;
+  border-radius: 5px;
+  width: 460px;
+}
+
+.form-container h1 {
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+#form {
+  width: 70%;
+  margin: 0 auto;
+}
+
+#form > label {
+  padding-right: 50px;
+}
+
+#form > input {
+  margin-bottom: 1em;
+  padding: 0.25em 0.6em;
+}
+
+#form > input:first-of-type {
+  margin-left: 31px;
+}
+
+#form input[type="submit"] {
+  padding: 0.6em 2.5em;
+  background-color: #60b2df;
+  border: 0;
+  margin: 0.3em auto;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 600;
+  color: white;
+  text-align: center;
+  transition: all 0.15s;
+  letter-spacing: 0.1em;
+}
+
+#form input[type="submit"]:disabled {
+  background-color: #8dc8e8;
+}
+
+#form input[type="submit"]:hover:enabled {
+  background-color: #56a0c8;
+}
+
+.task-bg {
+  margin-top: -42px;
+  width: 60%;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.task-container {
+  background-color: #fff;
+  position: relative;
+  top: 6em;
+  padding: 2em 3em;
+  border-radius: 5px;
+}
+
+.task-container h2 {
+  margin-bottom: 0.5em;
+}
+
+.task-list > div {
+  display: flex;
+  padding: 0.5em 0.6em;
+  border: 1px solid #dddddd;
+  border-radius: 3px;
+  margin-bottom: 1em;
+}
+
+.task-list > div > p:first-child {
+  margin-right: auto;
+}
+
+.task-list > div > span {
+  padding: 0 0.5em;
+}
+
+.task-list > div > span > i {
+  margin-right: 0.3em;
 }
