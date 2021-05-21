@@ -22,7 +22,8 @@ export default function CreateTask() {
       body: formData,
     }).then((res) => {
       if (res.status !== 201) {
-        window.alert("Failed to create task");
+        window.alert("Failed to upload task");
+        setloading(false);
         return;
       }
       res.json().then((json) => {
