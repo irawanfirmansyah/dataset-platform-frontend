@@ -5,6 +5,8 @@ import { useAuth } from "./App";
 export default function Login() {
   const [email, setEmail] = React.useState("");
   const [password, setPassowrd] = React.useState("");
+  const [loading, setLoading] = React.useState(false);
+
   const history = useHistory();
   const auth = useAuth();
 
@@ -16,6 +18,7 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const bodyJson = {
       email,
       password,
@@ -51,8 +54,8 @@ export default function Login() {
           <br />
           <input
             type="submit"
-            value="Login"
-            disabled={email.length === 0 || password.length === 0}
+            value={loading ? "Loading" : "Login"}
+            disabled={email.length === 0 || password.length === 0 || loading}
           />
           {auth.error && (
             <p style={{ marginTop: "0.2em", color: "red" }}>
